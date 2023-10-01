@@ -1,54 +1,3 @@
-/*Configurações gerais*/
-*{ 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
-}
-:root{
-    --royalBlue: #065B77;
-    --aquaGreen: #57BFB5;
-    --BlueDark: #012430;
-    --aquaDark: #224b47;
-    --fireOrange: #DD603B;
-    --white: #ffffff;
-    --gray: #222222;
-}
-.container{
-    background-color: var(--royalBlue);
-    max-width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/*Navbar*/
-.navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    max-width: 100%;
-    height: 18vh;
-}
-#logo{
-    width: 15em;
-}
-#navbar-eye li{
-    display: inline;
-    text-decoration: none;
-    margin: 0 2em;
-    font-size: 1em;
-}
-#navbar-eye li a{
-    text-decoration: none;
-    color: var(--white);
-    transition: all 0.5s;
-}
-
-#navbar-eye li a:hover{
-    color: var(--fireOrange);
-}
-
 /*Content*/
 .content{
     max-width: 100%;
@@ -117,12 +66,15 @@
     margin-right: 2em;
 
     background-color: transparent;
-    color: var(--white);
     cursor: pointer;
-
+    
     border: 3px solid var(--fireOrange);
     border-radius: 1.4em;
     transition: all 0.5s;
+}
+#lisFurto a{
+    color: var(--white);
+    text-decoration: none;
 }
 #adcFurto:hover{
     background-color: var(--white);
@@ -130,10 +82,13 @@
 }
 #adcFurto:hover a {
     color: var(--fireOrange); /* Estilo do link ao passar o mouse sobre #adcFurto */
-  }
+}
 #lisFurto:hover{
     border: 3px solid var(--white);
     color: var(--fireOrange);
+}
+#lisFurto:hover a {
+    color: var(--fireOrange); /* Estilo do link ao passar o mouse sobre #adcFurto */
 }
 /*Div-image*/
 .div-image{
