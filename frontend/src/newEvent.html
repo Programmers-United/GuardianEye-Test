@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/newEvent.css">
+    <title>Guardian Eye</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div>
+                <img id="logo" src="../image/logo.png" alt="Logo(Guardian Eye)"/>
+            </div>
+            <ul id="navbar-eye">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="newEvent.html">Adicionar Furto</a></li>
+                <li><a href="/">Listar Furto</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="dialog">
+                <div class="inputs">
+                    <h3>Informar Ocorrência</h3>
+                    <label>
+                        <input id="Title" class="input-details" type="text" placeholder="Título">
+                    </label>
+                    <label>
+                        <input id="Descrition" class="input-details" type="text" placeholder="Descrição">
+                    </label>
+                    <div class="radio-group">
+                        <label>
+                          <input type="radio" name="crime-type" value="furto">
+                          Furto
+                        </label>
+                        <label>
+                          <input type="radio" name="crime-type" value="assalto">
+                          Assalto
+                        </label>
+                        <label>
+                          <input type="radio" name="crime-type" value="roubo">
+                          Roubo
+                        </label>
+                        <label>
+                          <input type="radio" name="crime-type" value="outros">
+                          Outros
+                        </label>
+                      </div>                      
+                    <label>
+                        <input id="Data" class="input-details" type="date">
+                    </label>
+                    <label>
+                        <input id="Time" class="input-details" type="time">
+                    </label>
+                    <button id="confirm">Confirmar</button>
+                </div>
+                <div class="map"></div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
