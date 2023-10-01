@@ -112,4 +112,9 @@
     background-color: var(--aquaGreen);
     color: var(--white);
 }
-  
+
+/*Mapa*/
+.map{
+    border-top-right-radius: 3em;
+    border-bottom-right-radius: 3em;
+}
