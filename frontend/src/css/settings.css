@@ -13,6 +13,8 @@
     --fireOrange: #DD603B;
     --white: #ffffff;
     --gray: #222222;
+    --red: #d00a07;
+    --rosee: #ef9e9d;
 }
 .container{
     background-color: var(--royalBlue);

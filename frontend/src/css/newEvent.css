@@ -3,9 +3,64 @@
     max-width: 100%;
     height: 82vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+/*Notificação*/
+.notification {
+    background-color: var(--white);
+    position: absolute;
+    align-self: flex-end;
+    top: 6em;
+    z-index: 1;
+    height: 8em;
+    width: 22em;
+    border-top-left-radius: 2em;
+    animation-name: slideIn; /* Nome da animação */
+    animation-duration: 0.5s; /* Duração da animação */
+    animation-timing-function: ease-in-out; /* Timing function */
+    animation-fill-mode: forwards; /* Mantenha a posição final */
+    display: none; /* Inicialmente oculto */
+}
+@keyframes slideIn {
+    0% {
+        opacity: 0; /* Início da animação */
+    }
+    100% {
+        opacity: 1; /* Fim da animação */
+    }
+}
+.navigator{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 2em;
+}
+.navigator h3{
+    margin-bottom: 1.3em;
+    color: var(--BlueDark);
+}
+.percursor{
+    height: 0.3em;
+    background-color: var(--aquaGreen);
+    animation-name: loading; /* Nome da animação */
+    animation-duration: 6s; /* Duração da animação */
+    animation-timing-function: ease-in-out; /* Timing function */
+    animation-fill-mode: forwards; /* Mantenha a posição final */
+}
+@keyframes loading{
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+/*Container do formulário*/
 .dialog{
     background-color: var(--white);
     box-shadow: 0em 0em 4em var(--BlueDark);
@@ -69,6 +124,10 @@ form{
     background-color: var(--aquaGreen);
     color: var(--white);
 }
+#confirm:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+  }
 
 /*Mapa*/
 .map{
