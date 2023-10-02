@@ -1,0 +1,86 @@
+/*Content*/
+.content{
+    max-width: 100%;
+    height: 82vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/*Details*/
+.details{
+    background-color: var(--aquaGreen);
+    box-shadow: 0em 0em 4em var(--BlueDark);
+    border-radius: 4em;
+    width: 70%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-areas: "information map";
+}
+/*Information*/
+.information{
+    grid-area: "information";
+    border-radius: 4em;
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    color: var(--fireOrange);
+}
+.information span{
+    color: var(--white);
+    font-size: 0.8em;
+}
+#info-title{
+    align-self: center;
+}
+.information h3{
+    margin-bottom: 1em;
+}
+.buttons{
+    align-self: center;
+}
+#home{
+    width: 8.5em;
+    height: 3em;
+    margin-right: 2em;
+    background-color: var(--fireOrange);
+    cursor: pointer;
+    border: none;
+    border-radius: 1.4em;
+    transition: all 0.5s;
+}
+#home a{
+    color: var(--white);
+    text-decoration: none;
+}
+#del-button{
+    width: 8.5em;
+    height: 3em;
+    margin-right: 2em;
+    background-color: transparent;
+    color: var(--white);
+    cursor: pointer;
+    border: 3px solid var(--fireOrange);
+    border-radius: 1.4em;
+    transition: all 0.5s;
+}
+#home:hover{
+    background-color: var(--white);
+    color: var(--fireOrange);
+}
+#home:hover a {
+    color: var(--fireOrange); /* Estilo do link ao passar o mouse sobre #adcFurto */
+}
+#del-button:hover{
+    border: 3px solid var(--white);
+    color: var(--fireOrange);
+}
+/*Mapa*/
+.map{
+    border-top-right-radius: 3em;
+    border-bottom-right-radius: 3em;
+}
