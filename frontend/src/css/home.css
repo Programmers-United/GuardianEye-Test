@@ -97,7 +97,7 @@
 /*Div-image*/
 .div-image {
   background-color: var(--aquaGreen);
-  height: 100%;
+  height: 82vh;
   width: 45em;
   float: right;
   border-top-left-radius: 10em;
