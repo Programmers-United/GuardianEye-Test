@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   process.env.PG_USER,
   process.env.PG_PASSWORD,
   {
-    host: localhost,
+    host: process.env.PG_HOST,
     dialect: "postgres",
   }
 );

@@ -5,7 +5,7 @@ const Point = sequelize.define('Point', {
     //Attributes of the table
     id:{
         type: DataTypes.UUID,
-        defaultValue: sequelize.UUIDV4,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
     title:{
@@ -33,5 +33,12 @@ const Point = sequelize.define('Point', {
         allowNull: false
     }
 });
+
+async function Synchronize(){
+    await Point.sync();
+    console.log('Synchronize with database');
+}
+
+Synchronize();
 
 module.exports = Point;
