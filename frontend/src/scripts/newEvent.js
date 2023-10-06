@@ -1,6 +1,7 @@
 /* Arquivo para trabalhar com as informações recebidas através do formulário */
+import { getMarkerLatitude, getMarkerLongitude } from "./map.js";
+
 const form = document.getElementById("occurrence-form");
-const notification = document.querySelector('.notification');
 
 const confirm = document.getElementById("confirm");
 
@@ -9,25 +10,29 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     /** Dados vindo do formulário */
     const title = document.getElementById("Title").value; 
-    const descr = document.getElementById("Description").value;
-    const inputRadio = document.querySelector('input[name="crime-type"]:checked');
-    const date = document.getElementById("Data").value; 
+    const description = document.getElementById("Description").value;
+    const selectedType = document.querySelector('input[name="crime-type"]:checked');
+    const data = document.getElementById("Data").value; 
     const time = document.getElementById("Time").value; 
 
-    if (checkFields()) { 
+    if (checkFields() && selectedType) { 
         const createObject = { //Criando objeto com as informações(Pode ser últil na adição do elemento ao banco de dados)
             title,
-            descr,
-            inputRadio: inputRadio ? inputRadio.value : "", // Verifique se um radio button está selecionado e obtenha seu valor
-            date,
-            time
+            description,
+            type: selectedType.value, // Verifique se um radio button está selecionado e obtenha seu valor
+            data,
+            time,
+            geometric: {
+                type: "point",
+                coordinates: [getMarkerLatitude(), getMarkerLongitude()]
+            }
         };
-        console.log(createObject);
+        saveDatabase(createObject);
     }
     customizedNotification(title);
 });
 
-//Função para validar o formulário (Falta a localização)
+//Função para validar o formulário
 const checkFields = () =>{
     // Selecionar todos os campos do formulário
     const campos = document.querySelectorAll('.input-details');
@@ -98,4 +103,17 @@ const clearFields = () =>{
     for (const inputField of inputFields) {
         inputField.value = "";
     }
+}
+
+/** Função para salvar os dados do formulário no banco de dados */
+const saveDatabase = (objData) =>{
+    fetch("http://localhost:5000/point",{
+        method: 'POST',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(objData)}
+        ).then((data)=> console.log(data.text()))
+        .catch((err)=>console.log(err));
 }

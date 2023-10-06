@@ -33,3 +33,12 @@ async function initMap() {
 }
 
 initMap();
+
+// Exportando funções para obter a latitude e a longitude do marcador
+export function getMarkerLatitude() {
+    return marker.getPosition().lat();
+}
+
+export function getMarkerLongitude() {
+    return marker.getPosition().lng();
+}
