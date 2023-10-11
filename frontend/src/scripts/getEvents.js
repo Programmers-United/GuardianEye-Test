@@ -1,4 +1,4 @@
-const fetchdata = () => {
+const fetchData = () => {
   return fetch("http://localhost:5000/point", {
     method: "GET",
     headers: {
@@ -6,4 +6,4 @@ const fetchdata = () => {
     },
   }).then((resp) => resp.json());
 };
-export { fetchdata };
+export { fetchData };

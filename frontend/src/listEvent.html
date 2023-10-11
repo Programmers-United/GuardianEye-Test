@@ -9,11 +9,11 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
       rel="stylesheet"
     />
-    <script src="scripts/listEvent.js" defer></script>
+    <script type="module" src="scripts/listEvent.js" defer></script>
     <link rel="stylesheet" href="./css/listEvent.css" />
     <link rel="stylesheet" href="./css/settings.css" />
     <!-- Css Geral-->
-    <link rel="shortcut icon" href="../image/fav.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../image/fav.png" type="image/x-icon" />
     <title>Guardian Eye</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script type="module" src="./scripts/map.js"></script>
@@ -22,7 +22,9 @@
     <div class="container">
       <div class="navbar">
         <div>
-            <a href="home.html" title="Guardian Eye"><img id="logo" src="../image/logo.png" alt="Logo(Guardian Eye)"/></a>
+          <a href="home.html" title="Guardian Eye"
+            ><img id="logo" src="../image/logo.png" alt="Logo(Guardian Eye)"
+          /></a>
         </div>
         <div>
           <ul id="navbar-eye">
@@ -36,7 +38,11 @@
         <div class="orderList">
           <div id="campo-pesq">
             <div>
-              <input id="input-pesq" type="text" placeholder="Escreva aqui..." />
+              <input
+                id="input-pesq"
+                type="text"
+                placeholder="Escreva aqui..."
+              />
             </div>
             <div>
               <button id="btn-pesq">
