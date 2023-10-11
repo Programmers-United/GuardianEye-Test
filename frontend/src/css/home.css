@@ -1,7 +1,7 @@
 /*Content*/
 .content {
   max-width: 100%;
-  height: calc(100% -18vh);
+  height: calc(100vh -18vh);
 }
 /*Title*/
 .title {
@@ -117,4 +117,16 @@
 }
 .div-image span {
   color: var(--fireOrange);
+}
+
+@media screen and (max-width: 1920px) and (max-height: 1080px) {
+  .content {
+    height: calc(100% -15vh);
+  }
+  .navbar {
+    height: 15vh;
+  }
+  .text p {
+    font-size: 15px;
+  }
 }

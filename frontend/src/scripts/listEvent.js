@@ -36,7 +36,7 @@ window.addEventListener("load", () => {
         //Button
         const divButton = document.createElement("div");
         const button = document.createElement("button");
-        button.classList.add("btn-abrir");
+        button.classList.add("btn-remover");
         button.textContent = "Excluir";
         divButton.appendChild(button);
 
