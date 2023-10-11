@@ -49,7 +49,7 @@ window.addEventListener("load", ()=>{
     const divButton = document.createElement("div");
     const button = document.createElement('button');
     button.classList.add('btn-abrir');
-    button.textContent = 'Abrir';
+    button.textContent = 'Excluir';
     divButton.appendChild(button);
 
     contTitulo.appendChild(divTitle);
@@ -66,8 +66,7 @@ window.addEventListener("load", ()=>{
 
     // Adicionar o evento de clique ao botão individualmente
     button.addEventListener("click", () => {
-      alert(element.titulo);
-      window.location.href = "detailsEvent.html";
+      alert("Tentativa de remoção do " + element.titulo);
     });
   });
 });
