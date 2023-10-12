@@ -76,3 +76,63 @@
   color: var(--white);
   background-color: var(--blueEye);
 }
+
+.window-navigate{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3em;
+
+  width: 30em;
+  height: 15em;
+  background-color: var(--white);
+  box-shadow: 0em 0em 2em #222;
+  border-radius: 2em;
+  display: none;
+}
+#nav-title{
+  width: 90%;
+  text-align: center;
+}
+.confirm{
+  margin-right: 2em;
+  color: var(--white);
+  background-color: var(--royalBlue);
+  cursor: pointer;
+  font-size: 1rem;
+  width: 90px;
+  height: 35px;
+  border-radius: 80px;
+  border-style: none;
+  transition: all 0.5s;
+}
+.confirm:hover {
+  color: var(--royalBlue);
+  border: 2px solid var(--royalBlue);
+  box-shadow: 0em 0em 1em var(--blueOcean);
+  background-color: var(--white);
+}
+.close{
+  color: var(--white);
+  background-color: var(--red);
+  cursor: pointer;
+  font-size: 1rem;
+  width: 90px;
+  height: 35px;
+  border-radius: 80px;
+  border-style: none;
+  transition: all 0.5s;
+}
+.close:hover {
+  color: var(--red);
+  border: 2px solid var(--red);
+  box-shadow: 0em 0em 1em var(--blueOcean);
+  background-color: var(--white);
+}
