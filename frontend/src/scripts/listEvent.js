@@ -1,16 +1,4 @@
-const botao = document.getElementById("btn-pesq");
-const input = document.getElementById("input-pesq");
 import { fetchData } from "./getEvents.js";
-
-botao.addEventListener("click", () => {
-  console.log("CLICOU!" + input.value); //Somente testando a validade do input
-});
-input.addEventListener("keypress", (event) => {
-  event.key === "Enter"
-    ? console.log("ENTER!" + input.value)
-    : console.log("ERRO");
-});
-
 //Dados vindos do banco de dados
 const contentListData = document.getElementById("lista");
 window.addEventListener("load", () => {

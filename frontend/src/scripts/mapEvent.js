@@ -24,8 +24,8 @@ async function initMap() {
     arrayData.forEach((element) => {
       marker = new google.maps.Marker({
         position: {
-          lat: element.geometric.coordnates[0],
-          lng: element.geometric.coordnates[1],
+          lat: element.geometric.coordinates[0],
+          lng: element.geometric.coordinates[1],
         },
         map,
         title: element.title,
