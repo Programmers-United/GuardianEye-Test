@@ -18,6 +18,7 @@
   --blueOcean: #076483;
   --blueSky: #0d7699;
   --blueEye: #0890bd;
+  --iceWhite: #f1f4f4;
 }
 .container {
   background-color: var(--royalBlue);
@@ -48,7 +49,9 @@
   color: var(--white);
   transition: all 0.5s;
 }
-
+#navbar-eye li .action{
+  border-bottom: 3px solid var(--fireOrange);
+}
 #navbar-eye li a:hover {
   color: var(--fireOrange);
 }
