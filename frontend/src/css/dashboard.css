@@ -1,0 +1,81 @@
+.content{
+    width: 100%;
+    height: calc(100vh - 18vh);
+    display: grid;
+    grid-template-columns: 72% 28%;
+}
+
+/* Estilização do dashboard */
+.dashboard{
+    height: 100%;
+    padding: 0em 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.titleDash{
+    color: var(--iceWhite);
+}
+
+/* Lista dinâmica do dashboard */
+.listOccorrences{
+    height: (100%-5%);
+    margin-top: 5%;
+    border-top-left-radius: 5em;
+    float: right;
+    overflow-y: auto;
+    background-color: var(--iceWhite);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 2em #222;
+}
+.listOccorrences::-webkit-scrollbar {
+    width: 6px; /* Largura da barra de rolagem */
+}
+/* Estilizando o traço da barra de rolagem */
+.listOccorrences::-webkit-scrollbar-thumb {
+    background-color: var(--blueOcean); /* Cor do traço da barra de rolagem */
+    border-radius: 4px; /* Borda arredondada do traço */
+}
+/* Estilizando a área de fundo da barra de rolagem */
+.listOccorrences::-webkit-scrollbar-track {
+    background-color: transparent; /* Cor de fundo da barra de rolagem */
+}
+
+.title{
+    margin-top: 3em;
+    margin-bottom: 4em;
+    color: var(--blueOcean);
+}
+
+.list{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.itemList{
+    background-color: #fff;
+    width: 90%;
+    min-height: 9em;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 600ms;
+}
+.itemList:hover{
+    border: 1px solid #222;
+}
+.itemList h4{
+    color: var(--blueOcean);
+    margin-bottom: 1em;
+}
+.itemList p{
+    font-size: small;
+}
