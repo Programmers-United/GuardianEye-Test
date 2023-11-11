@@ -1,3 +1,4 @@
+import { showConfirmationDialog } from "./deleteEvents.js";
 import { fetchData } from "./getEvents.js";
 import { handleUpdateButtonClick } from "./updateEvent.js";
 //Dados vindos do banco de dados
@@ -24,9 +25,13 @@ window.addEventListener("load", () => {
 
         //Button
         const divButton = document.createElement("div");
+
+        //Button para excluir
         const button = document.createElement("button");
         button.classList.add("btn-remover");
         button.textContent = "Excluir";
+
+        //Button para editar
         const updateButton = document.createElement("button");
         updateButton.classList.add("btn-update");
         updateButton.textContent = "Atualizar";
@@ -47,40 +52,7 @@ window.addEventListener("load", () => {
 
         // Adicionar o evento de clique ao botão individualmente
         button.addEventListener("click", () => {
-          //Usando as constantes
-          const navigate = document.querySelector(".window-navigate");
-          const titleNaviagte = document.getElementById("nav-title");
-
-          //Modificando as constantes
-          titleNaviagte.textContent = `Tem certeza que deseja exluir o item?`;
-          //Elementos da div (ContentOccorrence);
-          document.querySelector(".contentTitle").textContent = `${element.title}`;
-          document.querySelector(".contentDescription").textContent = `${element.description}`;
-          document.querySelector(".contentType").textContent = `${element.type}`;
-          navigate.style.display = 'flex';
-
-          //Função para deletar o item ao confirmar
-          document.querySelector(".confirm").addEventListener("click", ()=>{
-            fetch(`http://localhost:5000/point/${element.id}`, {
-                method: "DELETE",
-            }).then(response => {
-              if (response.ok) {
-                console.log('Item removido com sucesso');
-                navigate.style.display = "none";
-                location.reload();
-              } else {
-                console.error('Erro ao remover o item');
-              }
-            })
-            .catch(error => {
-              console.error('Erro na solicitação:', error);
-            });
-          });
-          
-          //Função para cancelar a exclusão
-          document.querySelector(".close").addEventListener("click", ()=>{
-            navigate.style.display = "none";
-          });
+          showConfirmationDialog(element);
         });
 
         updateButton.onclick = null;
