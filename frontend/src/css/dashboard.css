@@ -59,13 +59,14 @@
 .itemList{
     background-color: #fff;
     width: 90%;
-    min-height: 9em;
+    min-height: 8em;
     padding: 1em;
     margin-bottom: 1em;
     border-radius: 1em;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    gap: 1em;
     cursor: pointer;
     transition: all 600ms;
 }
@@ -74,8 +75,17 @@
 }
 .itemList h4{
     color: var(--blueOcean);
-    margin-bottom: 1em;
 }
-.itemList p{
+.itemList p, .itemList span{
     font-size: small;
+}
+.typeSpan{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.circle{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
 }

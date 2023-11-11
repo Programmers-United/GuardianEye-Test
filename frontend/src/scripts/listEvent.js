@@ -45,7 +45,7 @@ window.addEventListener("load", () => {
         const descricao = document.createElement("p");
         descricao.classList.add("descricao");
         descricao.textContent = element.description;
-
+ 
         div.appendChild(contTitulo);
         div.appendChild(descricao);
         contentListData.appendChild(div);
