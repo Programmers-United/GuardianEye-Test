@@ -1,4 +1,5 @@
 import { fetchData } from "./getEvents.js";
+import { handleUpdateButtonClick } from "./updateEvent.js";
 //Dados vindos do banco de dados
 const contentListData = document.getElementById("lista");
 window.addEventListener("load", () => {
@@ -82,78 +83,11 @@ window.addEventListener("load", () => {
           });
         });
 
+        updateButton.onclick = null;
         updateButton.addEventListener("click", ()=>{
-          //Mosularizar esse evento
-          const windowUpdate = document.querySelector(".windowUpdate");
-          windowUpdate.style.display = "flex";
-          const title = document.getElementById("Title");
-          const description = document.getElementById("Description");
-          const radios = document.querySelector(".radio-group").querySelectorAll("input[type=radio]");
-          const date = document.getElementById("Data");
-          const time = document.getElementById("Time");
-          const mapUpadte = document.querySelector(".mapUpdate");
-          const confirmButton = document.getElementById("confirm");
-          const cancelButton = document.getElementById("cancel"); 
-          let mapUp;
-          let marker;
-          let radioSelecionado;
-
-          title.value = element.title;
-          description.value = element.description;
-          radios.forEach((item) => {
-            if (item.value === element.type) {
-              item.checked = true;
-              radioSelecionado = item.value;
-            }
-            item.addEventListener("click", () => {
-              if (item.checked) {
-                radioSelecionado = item.value;
-              }
-            });
-          })
-          const dataDoBanco = new Date(element.data);
-          const dataFormatada = dataDoBanco.toISOString().split('T')[0];
-          date.value = dataFormatada;
-          time.value = element.time;
-          async function initMap() {
-            //@ts-ignore
-            const { Map } = await google.maps.importLibrary("maps");
-            //Iniciando o centro do mapa
-            let center = { lat: element.geometric.coordinates[0], lng: element.geometric.coordinates[1] };
-
-            //Instanciando o mapa
-            mapUp = new Map(mapUpadte, {
-              center, //Let Center
-              zoom: 16,
-              mapTypeId: google.maps.MapTypeId.DROP
-            });
-
-            //Instanciando o marcador
-            marker = new google.maps.Marker({
-              position: center,
-              map: mapUp,
-              title: "Guardian Eye",
-              draggable: true,
-              animation: google.maps.Animation.DROP
-            });
-
-            //Evento para mudar o centro e a posição do marcador
-            mapUp.addListener("click", (event) => {
-              console.log(`${event.latLng.lat()}, ${event.latLng.lng()}`);
-              map.panTo(event.latLng);
-              marker.setPosition(event.latLng);
-            });
-          }
-          initMap();
-
-          confirmButton.addEventListener("click", ()=>{
-            windowUpdate.style.display = "none"
-          });
-          cancelButton.addEventListener("click", (e)=>{
-            e.preventDefault();
-            windowUpdate.style.display = "none"
-          })
-        })
+          //Chamando função do evento;
+          handleUpdateButtonClick(element);
+        });
       });
     })
     .catch((ERROR) => console.log(ERROR));
