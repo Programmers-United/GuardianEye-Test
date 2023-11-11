@@ -47,7 +47,11 @@ window.addEventListener("load", () => {
           const titleNaviagte = document.getElementById("nav-title");
 
           //Modificando as constantes
-          titleNaviagte.textContent = `Tem certeza que deseja exluir o item ${element.title}?`;
+          titleNaviagte.textContent = `Tem certeza que deseja exluir o item?`;
+          //Elementos da div (ContentOccorrence);
+          document.querySelector(".contentTitle").textContent = `${element.title}`;
+          document.querySelector(".contentDescription").textContent = `${element.description}`;
+          document.querySelector(".contentType").textContent = `${element.type}`;
           navigate.style.display = 'flex';
 
           //Função para deletar o item ao confirmar
