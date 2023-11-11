@@ -33,3 +33,19 @@ module.exports.delOccurrences = async function (req, res){
         res.status(400).send('Failed to delete');
       }
 };
+
+//Method for updating occurrences
+module.exports.updateOccurrences = async function (req, res){
+  try {
+    const atulizado = await Point.update(
+      req.body, {where:{ id: req.params.id}}
+    );
+    if(atulizado){
+      res.status(200).send('Occurrence updated');
+    }else{
+      res.status(400).send('Occurrence not found');
+    }
+  } catch (err) {
+    res.status(400).send('Failed to update');
+  }
+}
