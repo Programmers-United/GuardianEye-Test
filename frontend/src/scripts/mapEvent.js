@@ -17,6 +17,22 @@ async function initMap() {
     mapTypeId: google.maps.MapTypeId.DROP,
   });
 
+  //Selecionando a localização do navegador
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        map.setCenter(pos);
+      },
+      (error) => {
+        console.error('Erro ao obter a geolocalização:', error);
+      }
+    );
+  }
+
   //Instanciando o marcador
   fetchData().then((data) => {
     const arrayData = data;
@@ -29,20 +45,10 @@ async function initMap() {
         },
         map,
         title: element.title,
-        draggable: true,
         animation: google.maps.Animation.DROP,
       });
     });
   });
-
-  //Evento para mudar o centro e a posição do marcador
-  map.addListener("click", (event) => {
-    console.log(`${event.latLng.lat()}, ${event.latLng.lng()}`);
-    map.panTo(event.latLng);
-    marker.setPosition(event.latLng);
-  });
 }
 
 initMap();
-
-// Exportando funções para obter a latitude e a longitude do marcador
