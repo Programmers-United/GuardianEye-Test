@@ -1,44 +1,44 @@
-const { DataTypes} = require('sequelize');
-const sequelize = require('../database/connectDataBase');
+const mongoose = require("mongoose");
 
-const Point = sequelize.define('Point', {
-    //Attributes of the table
-    id:{
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true
-    },
-    title:{
-        type: DataTypes.STRING,
-        primaryKey: true,
-    },
-    description: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
+const pointSchema = new mongoose.Schema({
+  // Attributes of the collection
+  title: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  data: {
+    type: Date,
+    required: true,
+  },
+  time: {
+    type: Date, // In Mongoose, time is often stored as a Date object
+    required: true,
+  },
+  geometric: {
     type: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: String,
+      enum: ["Point"], // assuming you're storing a Point
+      required: true,
     },
-    data:{
-        type: DataTypes.DATE,
-        allowNull: false
+    coordinates: {
+      type: [Number], // assuming you're using GeoJSON format [longitude, latitude]
+      required: true,
     },
-    time:{
-        type: DataTypes.TIME,
-        allowNull: false
-    },
-    geometric:{
-        type: DataTypes.GEOMETRY,
-        allowNull: false
-    }
+  },
 });
 
-async function Synchronize(){
-    await Point.sync();
-    console.log('Synchronize with database');
-}
+// Create a Mongoose model
+const Point = mongoose.model("Point", pointSchema);
 
-Synchronize();
+// Synchronize function is not needed in Mongoose
 
 module.exports = Point;
