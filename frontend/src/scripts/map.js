@@ -24,6 +24,7 @@ async function initMap() {
                     lng: position.coords.longitude,
                 };
                 map.setCenter(pos);
+                marker.setPosition(pos);
             },
             (error) => {
                 console.error('Erro ao obter a geolocalização:', error);
