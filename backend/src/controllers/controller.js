@@ -1,4 +1,4 @@
-const Point = require("../modal/point");
+const Point = require("../model/point");
 
 //Method for listing occurrences
 module.exports.listOccurrences = async function (req, res){

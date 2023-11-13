@@ -1,7 +1,12 @@
+import { v4 as uuidv4 } from 'uuid';
 const mongoose = require("mongoose");
 
 const pointSchema = new mongoose.Schema({
   // Attributes of the collection
+  _id:{
+    type: String,
+    default: uuidv4(),
+  },
   title: {
     type: String,
     required: true,
