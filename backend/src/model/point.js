@@ -18,6 +18,7 @@ const pointSchema = new mongoose.Schema({
   },
   type: {
     type: String,
+    enum: ['assalto', 'roubo', 'furto', 'outros'],
     required: true,
   },
   data: {
