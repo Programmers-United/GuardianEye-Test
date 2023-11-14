@@ -22,12 +22,8 @@ const pointSchema = new Schema({
     enum: ['assalto', 'roubo', 'furto', 'outros'],
     required: true,
   },
-  data: {
+  data: { //Já seleciona a data e o time
     type: Date,
-    required: true,
-  },
-  time: {
-    type: Date, // In Mongoose, time is often stored as a Date object
     required: true,
   },
   geometric: {
