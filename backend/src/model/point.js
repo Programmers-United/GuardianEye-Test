@@ -1,11 +1,12 @@
-import { v4 as uuidv4 } from 'uuid';
-const mongoose = require("mongoose");
+const { v4: uuidv4 } = require('uuid');
+const mongoose = require("../database/connectDataBase");
+const { Schema } = mongoose;
 
-const pointSchema = new mongoose.Schema({
+const pointSchema = new Schema({
   // Attributes of the collection
   _id:{
     type: String,
-    default: uuidv4(),
+    default: uuidv4,
   },
   title: {
     type: String,
