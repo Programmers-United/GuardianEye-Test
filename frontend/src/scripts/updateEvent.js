@@ -25,7 +25,7 @@ async function initMap(element, mapUpadte) {
     //Evento para mudar o centro e a posição do marcador
     mapUp.addListener("click", (event) => {
         console.log(`${event.latLng.lat()}, ${event.latLng.lng()}`);
-        map.panTo(event.latLng);
+        mapUp.panTo(event.latLng);
         marker.setPosition(event.latLng);
     });
 
@@ -33,13 +33,21 @@ async function initMap(element, mapUpadte) {
 };
 
 //Função para preencher os campos do formulário
-function fillFormFields(element, title, description, date, time) {
+function fillFormFields(element, title, description, date) {
     title.value = element.title;
     description.value = element.description;
+
+    // Convertendo a data do banco de dados para o formato do input datetime-local
     const dataDoBanco = new Date(element.data);
-    const dataFormatada = dataDoBanco.toISOString().split('T')[0];
+    const ano = dataDoBanco.getFullYear();
+    const mes = String(dataDoBanco.getMonth() + 1).padStart(2, '0'); // Adiciona um zero à esquerda se for necessário
+    const dia = String(dataDoBanco.getDate()).padStart(2, '0'); // Adiciona um zero à esquerda se for necessário
+    const horas = String(dataDoBanco.getHours()).padStart(2, '0'); // Adiciona um zero à esquerda se for necessário
+    const minutos = String(dataDoBanco.getMinutes()).padStart(2, '0'); // Adiciona um zero à esquerda se for necessário
+
+    const dataFormatada = `${ano}-${mes}-${dia}T${horas}:${minutos}`;
+    
     date.value = dataFormatada;
-    time.value = element.time;
 };
 
 //Função principal para realizar evento do clique do button "Atualizar";
@@ -59,7 +67,6 @@ async function handleUpdateButtonClick(element) {
     const description = document.getElementById("Description");
     const radios = document.querySelector(".radio-group").querySelectorAll("input[type=radio]");
     const date = document.getElementById("Data");
-    const time = document.getElementById("Time");
     const mapUpadte = document.querySelector(".mapUpdate");
     const confirmButton = document.getElementById("confirm");
     const cancelButton = document.getElementById("cancel");
@@ -87,7 +94,7 @@ async function handleUpdateButtonClick(element) {
     });
 
     const { mapUp, marker } = await initMap(element, mapUpadte);
-    fillFormFields(element, title, description, date, time);
+    fillFormFields(element, title, description, date);
 
     //Confirmando as alterações
     confirmButton.onclick = null;
@@ -96,16 +103,15 @@ async function handleUpdateButtonClick(element) {
             title: title.value,
             description: description.value,
             type: selectedType,
-            data: date.value,
-            time: time.value,
+            data: new Date(date.value),
             geometric: {
-                type: "point",
+                type: "Point",
                 coordinates: [marker.getPosition().lat(), marker.getPosition().lng()]
             }
         };
         navigateUp.style.display = "none";
 
-        updateDataBase(createObject, element.id);
+        updateDataBase(createObject, element._id);
     });
 
     cancelButton.addEventListener("click", (e) => {
@@ -116,6 +122,7 @@ async function handleUpdateButtonClick(element) {
 
 //Função para autualizar o elemento
 async function updateDataBase(objData, id) {
+    console.log(objData);
     fetch(`http://localhost:5000/point/${id}`,{
         method: 'PUT',
         headers:{

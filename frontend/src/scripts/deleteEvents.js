@@ -5,7 +5,7 @@ const navigate = document.querySelector(".window-navigate");
 
 //Função para deletar item do banco de dados
 function deleteItem (element){
-    fetch(`http://localhost:5000/point/${element.id}`, {
+    fetch(`http://localhost:5000/point/${element._id}`, {
         method: "DELETE",
     }).then(response => {
         if (response.ok) {
