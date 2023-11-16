@@ -31,11 +31,13 @@ window.addEventListener("load", ()=>{
             divSpan.appendChild(type);
 
             colorTypes(element.type, circle);
-
+            
             div.appendChild(divSpan);
             list.appendChild(div);
         });
-    })
+        //Chamando função de data
+        fillSpanFields(data);
+    });
 });
 
 const colorTypes = (type, element) => {
@@ -56,4 +58,26 @@ const colorTypes = (type, element) => {
             element.style.backgroundColor = "var(--blueOcean)";    
         break;
     }
+}
+
+const fillSpanFields = (data) => {
+    const currentDate = new Date();
+
+    const sevenDaysAgo = new Date(currentDate);
+    sevenDaysAgo.setDate(currentDate.getDate() - 7);
+
+    const fifteenDaysAgo = new Date(currentDate);
+    fifteenDaysAgo.setDate(currentDate.getDate() - 15);
+
+    const thirtyDaysAgo = new Date(currentDate);
+    thirtyDaysAgo.setDate(currentDate.getDate() - 30);
+
+    const dataLastSevenDays = data.filter(item => new Date(item.data) >= sevenDaysAgo);
+    const dataLastFifteenDays = data.filter(item => new Date(item.data) >= fifteenDaysAgo);
+    const dataLastThirtyDays = data.filter(item => new Date(item.data) >= thirtyDaysAgo);
+
+    console.log(dataLastSevenDays);
+    document.querySelector('.DaySeven').textContent = dataLastSevenDays.length || 0;
+    document.querySelector('.DayFifteen').textContent = dataLastFifteenDays.length || 0;
+    document.querySelector('.DayMonth').textContent = dataLastThirtyDays.length || 0;
 }
