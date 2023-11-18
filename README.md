@@ -1,15 +1,16 @@
 # **GuardianEye**
-O GuardianEye é um projeto que permite aos usuários denunciar e visualizar ocorrências de roubos e outros crimes. O projeto é dividido em dois diretórios: "backend" e "frontend". O backend é desenvolvido em Node.js, JavaScript e Sequelize, com conexão a um banco de dados PostgreSQL. O frontend é desenvolvido com HTML, CSS e JavaScript puro.
+
+O GuardianEye é um projeto que permite aos usuários denunciar e visualizar ocorrências de roubos e outros crimes. O projeto é dividido em dois diretórios: "backend" e "frontend". O backend é desenvolvido em Node.js, JavaScript e Mongoose, com conexão a um banco de dados MongoDB. O frontend é desenvolvido com HTML, CSS e JavaScript puro.
 
 ## **Projeto da Disciplina de Banco de Dados II**
 
-O objetivo deste projeto é explorar as funcionalidades do Node.js para integração com bancos de dados relacionais. Utilizamos o PostgreSQL em conjunto com o PostGIS para armazenar dados geográficos.
+O objetivo deste projeto é explorar as funcionalidades do Node.js para integração com bancos de dados NoSQL. Utilizamos o MongoDB em conjunto com o Mongoose para armazenar dados geográficos.
 
 ### Tecnologias e Ferramentas Utilizadas
 
 - **Express:** Utilizamos o Express para criar as rotas de solicitação de dados para o banco.
 
-- **Sequelize, pg e pg-hstore:** Essas ferramentas foram essenciais para estabelecer a conexão com o banco de dados.
+- **Mongoose:** Essa ferramenta foi essencial para estabelecer a conexão com o banco de dados MongoDB.
 
 - **Variáveis de Ambiente:** Implementamos o uso de variáveis de ambiente para garantir a segurança do banco e de seus dados.
 
@@ -17,7 +18,7 @@ O objetivo deste projeto é explorar as funcionalidades do Node.js para integra�
 
 - **CORS (Cross-Origin Resource Sharing):** Utilizamos o CORS para prevenir problemas de modularização no código do back-end, assegurando a correta interação entre diferentes domínios.
 
-Este projeto representa um estudo aprofundado das tecnologias e abordagens utilizadas na integração de bancos de dados relacionais com aplicações Node.js, demonstrando a capacidade de armazenar e recuperar dados geográficos de forma eficiente.
+Este projeto representa um estudo aprofundado das tecnologias e abordagens utilizadas na integração de bancos de dados NoSQL com aplicações Node.js, demonstrando a capacidade de armazenar e recuperar dados geográficos de forma eficiente.
 
 ## **Backend**
 
@@ -25,48 +26,55 @@ Este projeto representa um estudo aprofundado das tecnologias e abordagens utili
 
 - [Node.js](https://nodejs.org/en)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [Sequelize](https://sequelize.org/)
+- [Mongoose](https://mongoosejs.com/)
 - [Express](https://expressjs.com/pt-br/)
-- [PostgreSQL](https://www.postgresql.org/download/)
-- [PostGIS](https://postgis.net/documentation/)
+- [MongoDB](https://www.mongodb.com/)
 
 ### Funcionalidades:
 
 O backend do projeto oferece uma API com os seguintes métodos:
 
-1. **GET (/point)**: Para listar as ocorrências existentes.
-2. **POST (/point)**: Para adicionar uma nova ocorrência.
-3. **DELETE (/point/id)**: Para deletar ocorrências existentes.
+1. _GET (/point)_: Para listar as ocorrências existentes.
+2. _POST (/point)_: Para adicionar uma nova ocorrência.
+3. _PUT (/point)_: Para atualizar as informações das ocorrências.
+4. _DELETE (/point/id)_: Para deletar ocorrências existentes.
 
 ### Configuração e Uso
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/Programmers-United/GuardianEye.git
 ```
+
 2. Navegue até o diretório "backend":
+
 ```bash
 cd backend
 ```
+
 3. Instale as dependências:
+
 ```bash
 npm install
 #ou
 yarn
 ```
-4. Configure o banco de dados PostgreSQL e adicione um arquivo **.env** à raiz do diretório "backend":
+
+4. Configure o banco de dados MongoDB e adicione um arquivo **.env** à raiz do diretório "backend":
+
 ```bash
-PG_HOST = localhost
-PG_USER = postgres
-PG_PASSWORD = yourPassword
-PG_DATABASE = yourDatabase
+MONGODB_URI = yourMongoDBConnectionUri
 API_PORT= yourPort
 ```
+
 5. Execute o servidor:
+
 ```bash
 npm start
 ```
-O servidor estara disponível em http://localhost:API_PORT
+
+O servidor estará disponível em http://localhost:API_PORT
 
 ## **Frontend**
 
@@ -106,18 +114,26 @@ Na página "Listar Ocorrências", os usuários podem visualizar uma lista de fur
 
 Além disso, um mapa interativo exibe os pontos onde os furtos ocorreram, permitindo que os visitantes visualizem a distribuição geográfica das ocorrências registradas na região.
 
+#### Dashboard
+
+Página onde é apresentado gráfico e estudos sobre os dados armazenados no bando de dados, (Mongodb Atlas), gráfico responsáveis por apresentar a disponibilidade das ocorrências durante o mês, bem como a sua localização no mapa, além de apresentar outras informaçãoes sobre as ocorrências.
+
 ### Configuração e Uso:
-1. Navegue até o diretórios "frontend"
+
+1. Navegue até o diretório "frontend"
+
 ```bash
 cd frontend
 ```
+
 2. Abra a página "**home.html**" em um navegador web.
 
 ## **Contribuição**:
+
 Se você deseja contribuir para o projeto, siga as etapas:
 
 1. Fork do repositório.
 2. Crie uma branch para sua funcionalidade: git checkout -b minha-funcionalidade
 3. Faça as alterações necessárias e faça o commit: git commit -m 'Adicionando nova funcionalidade'
 4. Envie suas alterações: git push origin minha-funcionalidade
-Abra um Pull Request no repositório original.
+   Abra um Pull Request no repositório original.

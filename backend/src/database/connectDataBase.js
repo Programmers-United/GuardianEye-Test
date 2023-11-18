@@ -1,27 +1,11 @@
-const dotenv = require("dotenv");
-dotenv.config();
+require('dotenv').config();
+const mongoose = require('mongoose');
 
-const { Sequelize } = require("sequelize");
+main().catch(err => console.log(err));
 
-const sequelize = new Sequelize(
-  process.env.PG_DATABASE,
-  process.env.PG_USER,
-  process.env.PG_PASSWORD,
-  {
-    host: process.env.PG_HOST,
-    dialect: "postgres",
-  }
-);
-
-async function connectDataBase() {
-  try {
-    await sequelize.authenticate();
-    console.log("Conectado com sucesso!");
-  } catch (error) {
-    console.error(error);
-  }
+async function main() {
+  await mongoose.connect(process.env.MONGO_URL);
+  console.log('Conectado com o Mongo');
 }
 
-connectDataBase();
-
-module.exports = sequelize;
+module.exports = mongoose;

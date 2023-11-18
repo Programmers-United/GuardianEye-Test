@@ -77,7 +77,26 @@
   background-color: var(--blueEye);
 }
 
-.window-navigate{
+.btn-update {
+  margin-top: 10px;
+  margin-right: 1em;
+  color: var(--white);
+  background-color: var(--fireOrange);
+  cursor: pointer;
+  font-size: 1rem;
+  width: 80px;
+  height: 30px;
+  border-radius: 80px;
+  border-style: none;
+  transition: all 0.5s;
+}
+.btn-update:hover {
+  color: var(--fireOrange);
+  background-color: var(--white);
+}
+
+/* Janela de deletar o item */
+.window-navigate, .windowUpdate{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -85,17 +104,49 @@
   z-index: 1;
 
   display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  background-color: #222222a4;
+  display: none;
+}
+.deleteWindow{
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3em;
 
-  width: 30em;
-  height: 15em;
+  width: auto;
+  max-width: 40em;
+  min-height: auto;
+  padding: 2em;
   background-color: var(--white);
   box-shadow: 0em 0em 2em #222;
   border-radius: 2em;
-  display: none;
+}
+.contentOccorrence{
+  width: 90%;
+  height: auto;
+  margin: 0em 1em;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  border-radius: 1em;
+  padding: 0.8em;
+  background-color: var(--iceWhite);
+  box-shadow: 0px 0px 0.2em var(--royalBlue);
+}
+.contentOccorrence h4{
+  color: var(--blueOcean);
+  font-weight: bold;
+}
+.contentDescription{
+  font-weight: small;
 }
 #nav-title{
   width: 90%;
@@ -135,4 +186,98 @@
   border: 2px solid var(--red);
   box-shadow: 0em 0em 1em var(--blueOcean);
   background-color: var(--white);
+}
+
+/* Janela de edição do item */
+.updateDialog{
+  width: 60em;
+  height: 35em;
+  background-color: var(--white);
+  box-shadow: 0em 0em 2em #222;
+  border-radius: 2em;
+
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-areas: "input map";
+}
+
+.form{
+  grid-area: "input";
+  border-radius: 4em;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.form h3{
+  color: var(--aquaDark);
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5em;
+}
+.input-details{
+  width: 20em;
+  height: 2em;
+  padding: 0.3em;
+  border: none;
+  border-bottom: 0.2em solid var(--aquaGreen);
+  outline: none;
+  color: var(--gray);
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+}
+.radio-group label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3em;
+}
+#confirm{
+  width: 5em;
+  height: 3em;
+  margin-right: 2em;
+  background-color: var(--fireOrange);
+  color: var(--white);
+  cursor: pointer;
+  border: none;
+  border-radius: 1.4em;
+  transition: all 0.5s;
+}
+#confirm:hover{
+  background-color: var(--aquaGreen);
+  color: var(--white);
+}
+#confirm:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+#cancel{
+  width: 6em;
+  height: 3em;
+  background-color: var(--white);
+  color: var(--fireOrange);
+  border: 2px solid var(--fireOrange);
+  cursor: pointer;
+  border-radius: 1.4em;
+  transition: all 0.5s;
+}
+#cancel:hover{
+  background-color: var(--fireOrange);
+  color: var(--white);
+}
+#cancel:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+.mapUpdate{
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
 }

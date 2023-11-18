@@ -11,18 +11,16 @@ form.addEventListener("submit", (e) => {
     const title = document.getElementById("Title").value; 
     const description = document.getElementById("Description").value;
     const selectedType = document.querySelector('input[name="crime-type"]:checked');
-    const data = document.getElementById("Data").value; 
-    const time = document.getElementById("Time").value; 
+    const data = document.getElementById("Data").value;  
 
     if (checkFields() && selectedType) { 
         const createObject = { //Criando objeto com as informações(Pode ser últil na adição do elemento ao banco de dados)
             title,
             description,
             type: selectedType.value, // Verifique se um radio button está selecionado e obtenha seu valor
-            data,
-            time,
+            data: new Date(data),
             geometric: {
-                type: "point",
+                type: "Point",
                 coordinates: [getMarkerLatitude(), getMarkerLongitude()]
             }
         };
@@ -33,6 +31,7 @@ form.addEventListener("submit", (e) => {
 
 /** Função para salvar os dados do formulário no banco de dados */
 const saveDatabase = (objData) =>{
+    console.log(objData);
     fetch("http://localhost:5000/point",{
         method: 'POST',
         headers:{

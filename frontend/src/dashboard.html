@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/settings.css" />
+    <!-- Css Geral-->
+    <link rel="shortcut icon" href="../image/fav.png" type="image/x-icon" />
+    <title>Guardian Eye</title>
+</head>
+<body>
+    <div id="dashboard" class="container">
+        <div class="navbar">
+          <div>
+            <a href="home.html" title="Guardian Eye"
+              ><img id="logo" src="../image/logo.png" alt="Logo(Guardian Eye)"
+            /></a>
+          </div>
+          <ul id="navbar-eye">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="newEvent.html">Adicionar Ocorrência</a></li>
+            <li><a href="listEvent.html">Listar Ocorrências</a></li>
+            <li><a class="action" href="dashboard.html">Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="content">
+          <div class="dashboard">
+            <div class="titleDash">
+              <h1>Dashboard</h1>
+              <div class="detailsDays">
+                <div class="sevenDays">
+                  <h4>Últimos 7 dias:</h4>
+                  <span class="DaySeven">0</span>
+                </div>
+                <div class="fifteenDays">
+                  <h4>Últimos 15 dias:</h4>
+                  <span class="DayFifteen">0</span>
+                </div>
+                <div class="month">
+                  <h4>Últimos 30 dias</h4>
+                  <span class="DayMonth">0</span>
+                </div>
+              </div>
+            </div>
+            <div class="graphics">
+              
+              <div class="initial">
+                <iframe class="mapOccorrence" src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=65560ed1-3177-4fb2-8fc0-3fc5e33b4427&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+                <iframe class="mapType" src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=655611ad-b898-40b9-85e5-c9b9c733cb8e&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+              </div>
+              <div class="initial">
+                <iframe class="qtdeOccorrences" src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=655628ec-70cf-4547-8ce7-08438d99d1f5&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+                <iframe class="mapCalor" src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=65560fa4-b898-4ade-8f4e-c9b9c72cab50&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+              </div>
+              
+            </div>
+          </div>
+          <div class="listOccorrences">
+            <div class="title">
+              <h2>Lista de Ocorrências</h2>
+            </div>
+            <div class="list"><div>
+          </div>
+        </div>
+    </div>
+    <script type="module" src="./scripts/dashBoard.js"></script>
+</body>
+</html>
