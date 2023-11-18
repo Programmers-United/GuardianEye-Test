@@ -1,6 +1,7 @@
 .content{
     width: 100%;
     min-height: calc(100vh - 18vh);
+    max-height: 118vh;
     display: grid;
     grid-template-columns: 72% 28%;
 }
@@ -81,7 +82,7 @@
 
 /* Lista dinâmica do dashboard */
 .listOccorrences{
-    height: (100%-5%);
+    max-height: 96vh;
     margin-top: 5%;
     border-top-left-radius: 5em;
     float: right;
