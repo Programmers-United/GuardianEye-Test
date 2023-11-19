@@ -36,7 +36,7 @@ O backend do projeto oferece uma API com os seguintes métodos:
 
 1. _GET (/point)_: Para listar as ocorrências existentes.
 2. _POST (/point)_: Para adicionar uma nova ocorrência.
-3. _PUT (/point)_: Para atualizar as informações das ocorrências.
+3. _PUT (/point:id)_: Para atualizar as informações das ocorrências.
 4. _DELETE (/point/id)_: Para deletar ocorrências existentes.
 
 ### Configuração e Uso
