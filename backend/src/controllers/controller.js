@@ -48,6 +48,9 @@ module.exports.delOccurrences = async function (req, res){
     if (!point) {
       return res.status(404).json({ erro: "Ocorrência não encontrada" });
     }
+    
+    //Removendo nó
+    await neo4jController.remove(point.title);
 
     // Excluir o evento
     await Point.findByIdAndDelete(eventId);

@@ -16,3 +16,31 @@ module.exports.salvar = async function(title, type, coordinates){
 
     session.close();
 } 
+
+module.exports.remove = async function(title){
+    var session = driver.session();
+
+    try {
+        // Tenta encontrar o nó pelo título 
+        const findNodeResult = await session.run(
+            "OPTIONAL MATCH (n:Ocorrence {title: $title}) RETURN n",
+            {
+                title,
+            }
+        );
+        
+        //Se encontrou remove
+        const node = findNodeResult.records[0].get("n"); 
+        if (node) {
+            await session.run( "MATCH (n:Ocorrence {title: $title}) DETACH DELETE n", 
+            {
+                title
+            });
+        }else{ //Se não
+            console.log(`Nó com o título ${title} não existe`);
+            return null;
+        }
+    } finally { //Fecha a session
+        session.close();
+    }
+}
