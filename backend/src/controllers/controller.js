@@ -20,6 +20,9 @@ module.exports.addOccurrences = async function (req, res){
     //Salvando o ponto como objeto como nó no neo4j
     await neo4jController.salvar(point.title, point.type, coordinates);
 
+    //Criando relação de tipo
+    await neo4jController.relationType(point.title);
+
     res.status(202).send(point);
   } catch (error) {
     if (error.code === 11000 && error.keyPattern.title) {
