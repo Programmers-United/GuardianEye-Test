@@ -28,6 +28,8 @@ async function initMap() {
         map.setCenter(pos);
       },
       (error) => {
+        //Tratando erro do navagador não permitir a localização
+        map.setCenter(center);
         console.error('Erro ao obter a geolocalização:', error);
       }
     );
@@ -40,8 +42,8 @@ async function initMap() {
     arrayData.forEach((element) => {
       marker = new google.maps.Marker({
         position: {
-          lat: element.geometric.coordinates[0],
-          lng: element.geometric.coordinates[1],
+          lat: element.geometric.coordinates[1],
+          lng: element.geometric.coordinates[0],
         },
         map,
         title: element.title,

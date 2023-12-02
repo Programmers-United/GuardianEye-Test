@@ -20,8 +20,9 @@ form.addEventListener("submit", (e) => {
             type: selectedType.value, // Verifique se um radio button está selecionado e obtenha seu valor
             data: new Date(data),
             geometric: {
+                //Tratando erro do armazenamento da informação da posição no banco
                 type: "Point",
-                coordinates: [getMarkerLatitude(), getMarkerLongitude()]
+                coordinates: [getMarkerLongitude(), getMarkerLatitude()]
             }
         };
         saveDatabase(createObject);

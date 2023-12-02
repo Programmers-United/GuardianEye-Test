@@ -4,7 +4,7 @@ async function initMap(element, mapUpadte) {
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
     //Iniciando o centro do mapa
-    let center = { lat: element.geometric.coordinates[0], lng: element.geometric.coordinates[1] };
+    let center = { lat: element.geometric.coordinates[1], lng: element.geometric.coordinates[0] };
 
     //Instanciando o mapa
     let mapUp = new Map(mapUpadte, {
@@ -106,7 +106,7 @@ async function handleUpdateButtonClick(element) {
             data: new Date(date.value),
             geometric: {
                 type: "Point",
-                coordinates: [marker.getPosition().lat(), marker.getPosition().lng()]
+                coordinates: [marker.getPosition().lng(), marker.getPosition().lat()]
             }
         };
         navigateUp.style.display = "none";

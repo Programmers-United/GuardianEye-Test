@@ -27,6 +27,9 @@ async function initMap() {
                 marker.setPosition(pos);
             },
             (error) => {
+                //Tratando erro do navagador não permitir a localização
+                map.setCenter(center);
+                marker.setPosition(center);
                 console.error('Erro ao obter a geolocalização:', error);
             }
         );
