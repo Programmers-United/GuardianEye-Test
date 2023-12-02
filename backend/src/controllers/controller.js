@@ -80,6 +80,12 @@ module.exports.updateOccurrences = async function (req, res){
       return res.status(404).json({ erro: "Evento não encontrado" });
     }
 
+    //Pegando as coordenadas do ponto atualizado
+    const coordinates = point.geometric.coordinates;
+
+    //Atualizando nó
+    await neo4jController.update(point.title, point.type, coordinates);
+
     //Atualizando a ocorrência
     const occorrenceUpdate = await Point.findByIdAndUpdate(req.params.id, req.body, {new: true});
     res.status(200).send(occorrenceUpdate);
