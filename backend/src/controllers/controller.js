@@ -1,5 +1,6 @@
 const Point = require("../model/point");
 const { v4: uuidv4, validate: isUUID } = require('uuid');
+const neo4jController = require("./neo4jControlers");
 
 //Method for listing occurrences
 module.exports.listOccurrences = async function (req, res){
@@ -12,6 +13,13 @@ module.exports.addOccurrences = async function (req, res){
   try {
     //Criando o ponto
     const point = await Point.create(req.body);
+
+    //Pegando as coordenadas do ponto criado
+    const coordinates = point.geometric.coordinates;
+
+    //Salvando o ponto como objeto como nó no neo4j
+    await neo4jController.salvar(point.title, point.type, coordinates);
+
     res.status(202).send(point);
   } catch (error) {
     if (error.code === 11000 && error.keyPattern.title) {
