@@ -1,5 +1,6 @@
 const driver = require("../database/connectWithNeo4j");
 
+//Method for adding occurrences in Neo4j
 module.exports.salvar = async function (title, type, coordinates) {
     var session = driver.session();
 
@@ -23,6 +24,7 @@ module.exports.salvar = async function (title, type, coordinates) {
     }
 }
 
+//Method for deleting occurrences in Neo4j
 module.exports.remove = async function (title) {
     var session = driver.session();
 
@@ -53,6 +55,7 @@ module.exports.remove = async function (title) {
     }
 }
 
+//Method for updating occurrences in Neo4j
 module.exports.update = async function (title, type, coordinates) {
     var session = driver.session();
 
@@ -90,6 +93,7 @@ module.exports.update = async function (title, type, coordinates) {
     }
 }
 
+//Method for relation in the occurrences (Relation of equals types)
 module.exports.relationType = async function (title) {
     var session = driver.session();
 
@@ -132,3 +136,53 @@ module.exports.relationType = async function (title) {
         session.close();
     }
 };
+
+//Method for relation in the occurrences (Relation of distance)
+module.exports.relationDistance = async function (titleOrigin, titleDestino, distannce ){
+    var session = driver.session();
+
+    try {
+     //Validar a existência de titleOrigin
+     const resultOrigin = await session.run(
+        "OPTIONAL MATCH (origin:Ocorrence {title: $title}) RETURN origin",
+        {
+            title: titleOrigin,
+        }
+    );
+
+    //Validando a existência de titleDestino
+    const resultDestino = await session.run(
+        "OPTIONAL MATCH (result:Ocorrence {title: $title}) RETURN result",
+        {
+            title: titleDestino,
+        }
+    );
+
+    const nodeOrigin = resultOrigin.records[0].get("origin");
+    const nodeDestino = resultDestino.records[0].get("result");
+
+    if (!nodeOrigin) {
+        console.log(`Nenhum nó encontrado com o título '${titleOrigin}'.`);
+        return;
+    }else{
+        if (nodeDestino) {
+            // Encontra nós com o mesmo tipo e cria relacionamentos
+            const relacionamentosResult = await session.run(
+                "MATCH (origin:Ocorrence {title: $titulo}), (destino:Ocorrence) WHERE destino.title = $desTitle AND destino.title <> $titulo " +
+                "CREATE (origin)-[:PROXIMITY_RELATIONSHIP {atributo: $distance}]->(destino)",
+                {
+                    desTitle: titleDestino,
+                    titulo: titleOrigin,
+                    distance: distannce,
+                }
+            );
+            console.log(`Relacionamentos de distância criado com sucesso para '${titleOrigin}' e '${titleDestino}'.`);
+        }
+    }
+        
+    } catch (error) {
+        console.error("Erro ao criar relacionamentos no Neo4j:", error);
+    } finally {
+        session.close();
+    }
+}

@@ -2,6 +2,30 @@ const Point = require("../model/point");
 const { v4: uuidv4, validate: isUUID } = require('uuid');
 const neo4jController = require("./neo4jControlers");
 
+//Funções
+// Função para calcular a distância entre dois pontos geográficos usando a fórmula de Haversine
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Raio médio da Terra em quilômetros
+
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+
+  const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  const distance = R * c; // Distância em quilômetros
+
+  return distance;
+}
+
+// Função auxiliar para converter graus em radianos
+function toRadians(degrees) {
+  return degrees * (Math.PI / 180);
+}
+
 //Method for listing occurrences
 module.exports.listOccurrences = async function (req, res){
     const point = await Point.find({});
@@ -22,6 +46,20 @@ module.exports.addOccurrences = async function (req, res){
 
     //Criando relação de tipo
     await neo4jController.relationType(point.title);
+
+    // Obtendo todos os pontos existentes
+    const allPoints = await Point.find({});
+
+    // Verificando a distância entre o novo ponto e todos os outros pontos
+    for (const existingPoint of allPoints) {
+        const existingCoordinates = existingPoint.geometric.coordinates;
+        const distance = haversineDistance(coordinates[1], coordinates[0], existingCoordinates[1], existingCoordinates[0]);
+
+        if (distance <= 2 && existingPoint.title != point.title) {
+            // Criando relacionamento e armazenando a distância
+            await neo4jController.relationDistance(point.title, existingPoint.title, distance);
+        }
+    }
 
     res.status(202).send(point);
   } catch (error) {
