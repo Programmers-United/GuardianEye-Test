@@ -3,6 +3,9 @@ import { fetchData } from "./getEvents.js";
 
 //Constante do elemento pai
 const list = document.querySelector(".list");
+//Constantes de acesso a janela de informação
+const windowInformation = document.querySelector(".inforWindow");
+const closeWindow = document.getElementById("closeWindow");
 
 window.addEventListener("load", ()=>{
     //Criando o item da lista
@@ -34,6 +37,14 @@ window.addEventListener("load", ()=>{
             
             div.appendChild(divSpan);
             list.appendChild(div);
+
+            div.addEventListener("click", ()=>{
+                windowInformation.style.display = "flex";
+
+                closeWindow.addEventListener("click", ()=>{
+                    windowInformation.style.display = "none";
+                })
+            });
         });
         //Chamando função de data
         fillSpanFields(data);
@@ -81,3 +92,31 @@ const fillSpanFields = (data) => {
     document.querySelector('.DayFifteen').textContent = dataLastFifteenDays.length || 0;
     document.querySelector('.DayMonth').textContent = dataLastThirtyDays.length || 0;
 }
+
+let mapOne; //Variavel do mapa
+let mapTwo;
+let marker; //Variavel do marcador
+const mapProximy = document.querySelector(".mapProximy");
+const mapTypes = document.querySelector(".mapTypes");
+
+async function initMap() {
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  //Iniciando o centro do mapa
+  let center = { lat: -6.889531952896556, lng: -38.54527473449707 };
+
+  //Instanciando o mapa
+  mapOne = new Map(mapProximy, {
+    center: center, //Let Center
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.DROP,
+  });
+
+  mapTwo = new Map(mapTypes, {
+    center: center, //Let Center
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.DROP,
+  });
+}
+
+initMap();
