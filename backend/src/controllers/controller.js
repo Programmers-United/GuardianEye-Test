@@ -162,3 +162,25 @@ module.exports.updateOccurrences = async function (req, res) {
     res.status(500).json({ erro: "Erro interno do servidor" });
   }
 }
+
+module.exports.listNeo4j = async function (req, res) {
+  try {
+    const eventId = req.params.id;
+    const objetcReturnNeo4j = await neo4jController.returnRelation(eventId);
+    res.status(200).send(objetcReturnNeo4j);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: "Erro interno do servidor" });
+  }
+}
+
+module.exports.listTypeNeo4j = async function (req, res){
+  try {
+    const eventId = req.params.id;
+    const objetcReturnNeo4j = await neo4jController.returnRelationType(eventId);
+    res.status(200).send(objetcReturnNeo4j);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: "Erro interno do servidor" });
+  }
+}
