@@ -6,6 +6,10 @@ const list = document.querySelector(".list");
 //Constantes de acesso a janela de informação
 const windowInformation = document.querySelector(".inforWindow");
 const closeWindow = document.getElementById("closeWindow");
+//Constantes de informação da janela de informção
+const inforTitle = document.getElementById("inforTitle");
+const inforProxy = document.getElementById("inforProxy");
+const inforType = document.getElementById("inforType");
 
 window.addEventListener("load", ()=>{
     //Criando o item da lista
@@ -40,7 +44,13 @@ window.addEventListener("load", ()=>{
 
             div.addEventListener("click", ()=>{
                 windowInformation.style.display = "flex";
+                inforTitle.innerHTML = `${element.title} - <span> ( ${element._id} ) </span>`;
+                inforProxy.innerHTML = `Ocorrências próximas a <span> ${element.title} </span>`;
+                inforType.innerHTML = `Mais ocorrências do tipo: <span> ${element.type} </span>`;
 
+                initMap(element.geometric.coordinates[1], element.geometric.coordinates[0], element.title, element._id);
+                console.log(element.geometric.coordinates[1], element.geometric.coordinates[0], element.title, element._id);
+                
                 closeWindow.addEventListener("click", ()=>{
                     windowInformation.style.display = "none";
                 })
@@ -50,6 +60,24 @@ window.addEventListener("load", ()=>{
         fillSpanFields(data);
     });
 });
+
+const listNodeProxy = async (idNode) =>{
+    return fetch(`http://localhost:5000/point/node/${idNode}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((resp) => resp.json());
+}
+
+const listNodeType = async (idNode) =>{
+    return fetch(`http://localhost:5000/point/node/type/${idNode}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((resp) => resp.json());
+}
 
 const colorTypes = (type, element) => {
     switch (type) {
@@ -99,7 +127,7 @@ let marker; //Variavel do marcador
 const mapProximy = document.querySelector(".mapProximy");
 const mapTypes = document.querySelector(".mapTypes");
 
-async function initMap() {
+async function initMap(latitude, longitude, title, id) {
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
   //Iniciando o centro do mapa
@@ -107,16 +135,79 @@ async function initMap() {
 
   //Instanciando o mapa
   mapOne = new Map(mapProximy, {
-    center: center, //Let Center
+    center: {
+        lat: latitude,
+        lng: longitude
+    } || center, //Let Center
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.DROP,
   });
 
   mapTwo = new Map(mapTypes, {
-    center: center, //Let Center
+    center: {
+        lat: latitude,
+        lng: longitude
+    } || center, //Let Center
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.DROP,
   });
+
+  // Criando marcador para coordenadas passadas como parâmetros
+  const markerParams = new google.maps.Marker({
+    position: {
+      lat: latitude,
+      lng: longitude,
+    },
+    map: mapOne,
+    title: title,
+    animation: google.maps.Animation.DROP,
+  });
+
+  const markerParamsTwo = new google.maps.Marker({
+    position: {
+      lat: latitude,
+      lng: longitude,
+    },
+    map: mapTwo,
+    title: title,
+    animation: google.maps.Animation.DROP,
+  });
+
+  //Instanciando o marcador
+  listNodeProxy(id).then((data) => {
+    const arrayData = data;
+    console.log(arrayData);
+
+    arrayData.forEach((element) => {
+      marker = new google.maps.Marker({
+        position: {
+          lat: element.posicao.y,
+          lng: element.posicao.x,
+        },
+        map: mapOne,
+        title: element.name,
+        animation: google.maps.Animation.DROP,
+      });
+    });
+  });
+
+   //Instanciando o marcador
+   listNodeType(id).then((data) => {
+    const arrayData = data;
+    console.log(arrayData);
+
+    arrayData.forEach((element) => {
+      marker = new google.maps.Marker({
+        position: {
+          lat: element.posicao.y,
+          lng: element.posicao.x,
+        },
+        map: mapTwo,
+        title: element.name,
+        animation: google.maps.Animation.DROP,
+      });
+    });
+  });
 }
 
-initMap();
+// initMap(-6.889531952896556, -38.54527473449707, "Teste de id", "4d598086-83cf-4a82-a2ee-00fe820bb79f");

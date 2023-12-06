@@ -19,6 +19,9 @@
 
     display: none;
 }
+.inforWindow span{
+    color: var(--rosee);
+}
 .mapWindow {
     height: 35em;
     width: 60em;
