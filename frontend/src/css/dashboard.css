@@ -57,13 +57,15 @@
     align-items: center;
     justify-content: center;
 }
-.mapProximy, .mapTypes{
+#mapProximy, #mapTypes{
     width: 90%;
     height: 70%;
     border-radius: 2em;
     background-color: #fff;
 }
-
+.custom-marker{
+    color: red;
+}
 #closeWindow {
     background-color: #222222bf;
     color: #fff;
