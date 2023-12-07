@@ -1,36 +1,29 @@
 //Arquivo para eventos de atualização de uma ocorrência
 //Função para iniciar mapa
-async function initMap(element, mapUpadte) {
-    //@ts-ignore
-    const { Map } = await google.maps.importLibrary("maps");
-    //Iniciando o centro do mapa
-    let center = { lat: element.geometric.coordinates[1], lng: element.geometric.coordinates[0] };
-
-    //Instanciando o mapa
-    let mapUp = new Map(mapUpadte, {
-        center, //Let Center
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.DROP
+function initMap(element, mapUpdate) {
+    // Iniciando o centro do mapa
+    let center = [element.geometric.coordinates[1], element.geometric.coordinates[0]];
+  
+    // Instanciando o mapa
+    let mapUp = L.map(mapUpdate).setView(center, 16);
+  
+    // Adicionando a camada de mapa do OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mapUp);
+  
+    // Instanciando o marcador
+    let marker = L.marker(center, { draggable: true, title: element.title || "Ocorrência" }).addTo(mapUp);
+  
+    // Evento para mudar o centro e a posição do marcador
+    mapUp.on("click", (event) => {
+      console.log(`${event.latlng.lat}, ${event.latlng.lng}`);
+      mapUp.panTo(event.latlng);
+      marker.setLatLng(event.latlng);
     });
-
-    //Instanciando o marcador
-    let marker = new google.maps.Marker({
-        position: center,
-        map: mapUp,
-        title: element.title || "Ocorrência",
-        draggable: true,
-        animation: google.maps.Animation.DROP
-    });
-
-    //Evento para mudar o centro e a posição do marcador
-    mapUp.addListener("click", (event) => {
-        console.log(`${event.latLng.lat()}, ${event.latLng.lng()}`);
-        mapUp.panTo(event.latLng);
-        marker.setPosition(event.latLng);
-    });
-
+  
     return { mapUp, marker };
-};
+  }
 
 //Função para preencher os campos do formulário
 function fillFormFields(element, title, description, date) {
@@ -106,7 +99,7 @@ async function handleUpdateButtonClick(element) {
             data: new Date(date.value),
             geometric: {
                 type: "Point",
-                coordinates: [marker.getPosition().lng(), marker.getPosition().lat()]
+                coordinates: [marker.getLatLng().lng, marker.getLatLng().lat]
             }
         };
         navigateUp.style.display = "none";
