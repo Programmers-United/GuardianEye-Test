@@ -1,14 +1,18 @@
 # **GuardianEye**
 
-O GuardianEye é um projeto que permite aos usuários denunciar e visualizar ocorrências de roubos e outros crimes. O projeto é dividido em dois diretórios: "backend" e "frontend". O backend é desenvolvido em Node.js, JavaScript e Mongoose, com conexão a um banco de dados MongoDB. O frontend é desenvolvido com HTML, CSS e JavaScript puro.
+O GuardianEye é um projeto que permite aos usuários denunciar e visualizar ocorrências de roubos e outros crimes. O projeto é dividido em dois diretórios: "backend" e "frontend". O backend é desenvolvido em Node.js, JavaScript e Mongoose, com conexão a um banco de dados MongoDB (Atlas) e Neo4j (Aura DB). O frontend é desenvolvido com HTML, CSS e JavaScript puro.
 
 ## **Projeto da Disciplina de Banco de Dados II**
 
-O objetivo deste projeto é explorar as funcionalidades do Node.js para integração com bancos de dados NoSQL. Utilizamos o MongoDB em conjunto com o Mongoose para armazenar dados geográficos.
+O objetivo deste projeto é explorar as funcionalidades do Node.js para integração com bancos de dados NoSQL. Utilizamos o MongoDB em conjunto com o Neo4j para armazenar dados geográficos e promover o relacionamento entre ocorrências do mesmo tipo, (assalto, furto...), e ocorrências próximas, geograficamente falando.
 
 ### Tecnologias e Ferramentas Utilizadas
 
 - **Express:** Utilizamos o Express para criar as rotas de solicitação de dados para o banco.
+
+- **Aura DB:** Serivdor online do banco relacional de grafos, Neo4j, onde é armazenados os dados que compõem os nós dos relacionamentos (Id, Título, Tipo e Localização).
+
+- **MongoDB Atlas:** Servidor online do MongoDB, onde é armazenados os dados das ocorrências, (Id, Título, Descrição, Tipo e Localização). 
 
 - **Mongoose:** Essa ferramenta foi essencial para estabelecer a conexão com o banco de dados MongoDB.
 
@@ -18,7 +22,7 @@ O objetivo deste projeto é explorar as funcionalidades do Node.js para integra�
 
 - **CORS (Cross-Origin Resource Sharing):** Utilizamos o CORS para prevenir problemas de modularização no código do back-end, assegurando a correta interação entre diferentes domínios.
 
-Este projeto representa um estudo aprofundado das tecnologias e abordagens utilizadas na integração de bancos de dados NoSQL com aplicações Node.js, demonstrando a capacidade de armazenar e recuperar dados geográficos de forma eficiente.
+Este projeto representa um estudo aprofundado das tecnologias e abordagens utilizadas na integração de bancos de dados NoSQL com aplicações Node.js, demonstrando a capacidade de armazenar e recuperar dados geográficos, além de gerar um sistema de localização de forma eficiente.
 
 ## **Backend**
 
@@ -29,15 +33,25 @@ Este projeto representa um estudo aprofundado das tecnologias e abordagens utili
 - [Mongoose](https://mongoosejs.com/)
 - [Express](https://expressjs.com/pt-br/)
 - [MongoDB](https://www.mongodb.com/)
+- [MongoDB Atlas](https://www.mongodb.com/docs/atlas/)
+- [Neo4j](https://neo4j.com/docs/)
+- [AuraDB](https://neo4j.com/docs/aura/auradb/?utm_source=google&utm_medium=PaidSearch&utm_campaign=GDB&utm_content=AMS-X-Awareness-GDB-Text&utm_term=&gad_source=1&gclid=CjwKCAiA98WrBhAYEiwA2WvhOqI1ZGxlVqS8H05k9U_8cCwUuNgDMAnggf0xu5Z04ymwYNrvFQWYFxoCN1MQAvD_BwE)
 
 ### Funcionalidades:
 
 O backend do projeto oferece uma API com os seguintes métodos:
 
-1. _GET (/point)_: Para listar as ocorrências existentes.
-2. _POST (/point)_: Para adicionar uma nova ocorrência.
-3. _PUT (/point:id)_: Para atualizar as informações das ocorrências.
-4. _DELETE (/point/id)_: Para deletar ocorrências existentes.
+- _Rotas de Ocorrências:_
+
+   1. _GET (/point)_: Para listar as ocorrências existentes.
+   2. _POST (/point)_: Para adicionar uma nova ocorrência.
+   3. _PUT (/point)_: Para atualizar as informações das ocorrências.
+   4. _DELETE (/point/id)_: Para deletar ocorrências existentes.
+#
+* _Rotas de relacionamento entre nós (Neo4j):_
+
+   1. _GET(/node/id)_: Para listar os relacionamentos de proximidade.
+   2. _GET(/node/type/id)_: Pra lista os relacionamentos de tipo.
 
 ### Configuração e Uso
 
@@ -65,6 +79,9 @@ yarn
 
 ```bash
 MONGODB_URI = yourMongoDBConnectionUri
+NEO4J_URL = yourNeo4jConnectionUri
+NEO4J_PASSWORD = yourNeo4jpassaword
+NEO4J_USER = yourUser
 API_PORT= yourPort
 ```
 
@@ -83,6 +100,8 @@ O servidor estará disponível em http://localhost:API_PORT
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Leaflet](https://leafletjs.com/)
+- [Mongo Charts](https://www.mongodb.com/docs/charts/)
 
 ### Páginas
 

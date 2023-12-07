@@ -1,75 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/dashboard.css" />
-    <link rel="stylesheet" href="./css/settings.css" />
-    <!-- Css Geral-->
-    <link rel="shortcut icon" href="../image/fav.png" type="image/x-icon" />
-    <title>Guardian Eye</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/dashboard.css" />
+  <link rel="stylesheet" href="./css/settings.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Css Geral-->
+  <link rel="shortcut icon" href="../image/fav.png" type="image/x-icon" />
+  <title>Guardian Eye</title>
 </head>
+
 <body>
-    <div id="dashboard" class="container">
-        <div class="navbar">
-          <div>
-            <a href="home.html" title="Guardian Eye"
-              ><img id="logo" src="../image/logo.png" alt="Logo(Guardian Eye)"
-            /></a>
-          </div>
-          <ul id="navbar-eye">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="newEvent.html">Adicionar Ocorrência</a></li>
-            <li><a href="listEvent.html">Listar Ocorrências</a></li>
-            <li><a class="action" href="dashboard.html">Dashboard</a></li>
-          </ul>
-        </div>
-        <div class="content">
-          <div class="dashboard">
-            <div class="titleDash">
-              <h1>Dashboard</h1>
-              <div class="detailsDays">
-                <div class="sevenDays">
-                  <h4>Últimos 7 dias:</h4>
-                  <span class="DaySeven">0</span>
-                </div>
-                <div class="fifteenDays">
-                  <h4>Últimos 15 dias:</h4>
-                  <span class="DayFifteen">0</span>
-                </div>
-                <div class="month">
-                  <h4>Últimos 30 dias</h4>
-                  <span class="DayMonth">0</span>
-                </div>
-              </div>
-            </div>
-            <div class="graphics">
-              
-              <div class="initial">
-                <iframe class="mapOccorrence" src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=65560ed1-3177-4fb2-8fc0-3fc5e33b4427&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-                <iframe class="mapType" src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=655611ad-b898-40b9-85e5-c9b9c733cb8e&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-              </div>
-              <div class="initial">
-                <iframe class="qtdeOccorrences" src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=655628ec-70cf-4547-8ce7-08438d99d1f5&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-                <iframe class="mapCalor" src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=65560fa4-b898-4ade-8f4e-c9b9c72cab50&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-              </div>
-              
-            </div>
-          </div>
-          <div class="listOccorrences">
-            <div class="title">
-              <h2>Lista de Ocorrências</h2>
-            </div>
-            <div class="list"><div>
-          </div>
-        </div>
+  <div id="dashboard" class="container">
+    <div class="navbar">
+      <div>
+        <a href="home.html" title="Guardian Eye"><img id="logo" src="../image/logo.png" alt="Logo(Guardian Eye)" /></a>
+      </div>
+      <ul id="navbar-eye">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="newEvent.html">Adicionar Ocorrência</a></li>
+        <li><a href="listEvent.html">Listar Ocorrências</a></li>
+        <li><a class="action" href="dashboard.html">Dashboard</a></li>
+      </ul>
     </div>
-    <script type="module" src="./scripts/dashBoard.js"></script>
+    <div class="inforWindow">
+      <div class="mapWindow">
+        <div class="information">
+          <h2 id="inforTitle">Nome da Ocorrência - <span>Id</span></h2>
+        </div>
+        <div class="inforContainer">
+          <div class="divProximy">
+            <h4 id="inforProxy">Ocorrências Próximas</h4>
+            <div id="mapProximy"></div>
+          </div>
+          <div class="divTypes">
+            <h4 id="inforType">Ocorrências de tipo</h4>
+            <div id="mapTypes"></div>
+          </div>
+        </div>
+      </div>
+      <div id="closeWindow">
+        <svg fill="#ffffff" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 460.775 460.775" xml:space="preserve"
+          stroke="#ffffff">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55 c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55 c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505 c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55 l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z">
+            </path>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="content">
+      <div class="dashboard">
+        <div class="titleDash">
+          <h1>Dashboard</h1>
+          <div class="detailsDays">
+            <div class="sevenDays">
+              <h4>Últimos 7 dias:</h4>
+              <span class="DaySeven">0</span>
+            </div>
+            <div class="fifteenDays">
+              <h4>Últimos 15 dias:</h4>
+              <span class="DayFifteen">0</span>
+            </div>
+            <div class="month">
+              <h4>Últimos 30 dias</h4>
+              <span class="DayMonth">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="graphics">
+
+          <div class="initial">
+            <iframe class="mapOccorrence"
+              src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=65560ed1-3177-4fb2-8fc0-3fc5e33b4427&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <iframe class="mapType"
+              src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=655611ad-b898-40b9-85e5-c9b9c733cb8e&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+          </div>
+          <div class="initial">
+            <iframe class="qtdeOccorrences"
+              src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=655628ec-70cf-4547-8ce7-08438d99d1f5&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <iframe class="mapCalor"
+              src="https://charts.mongodb.com/charts-guardianeye-iwkll/embed/charts?id=65560fa4-b898-4ade-8f4e-c9b9c72cab50&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+          </div>
+
+        </div>
+      </div>
+      <div class="listOccorrences">
+        <div class="title">
+          <h2>Lista de Ocorrências</h2>
+        </div>
+        <div class="list">
+          <div>
+          </div>
+        </div>
+      </div>
+      <script type="module" src="./scripts/dashBoard.js"></script>
 </body>
+
 </html>

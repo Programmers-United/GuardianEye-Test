@@ -96,12 +96,13 @@
 }
 
 /* Janela de deletar o item */
-.window-navigate, .windowUpdate{
+.window-navigate,
+.windowUpdate {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 1111111111;
 
   display: flex;
   align-items: center;
@@ -112,7 +113,7 @@
   background-color: #222222a4;
   display: none;
 }
-.deleteWindow{
+.deleteWindow {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,7 +128,7 @@
   box-shadow: 0em 0em 2em #222;
   border-radius: 2em;
 }
-.contentOccorrence{
+.contentOccorrence {
   width: 90%;
   height: auto;
   margin: 0em 1em;
@@ -141,18 +142,18 @@
   background-color: var(--iceWhite);
   box-shadow: 0px 0px 0.2em var(--royalBlue);
 }
-.contentOccorrence h4{
+.contentOccorrence h4 {
   color: var(--blueOcean);
   font-weight: bold;
 }
-.contentDescription{
+.contentDescription {
   font-weight: small;
 }
-#nav-title{
+#nav-title {
   width: 90%;
   text-align: center;
 }
-.confirm{
+.confirm {
   margin-right: 2em;
   color: var(--white);
   background-color: var(--royalBlue);
@@ -170,7 +171,7 @@
   box-shadow: 0em 0em 1em var(--blueOcean);
   background-color: var(--white);
 }
-.close{
+.close {
   color: var(--white);
   background-color: var(--red);
   cursor: pointer;
@@ -189,7 +190,7 @@
 }
 
 /* Janela de edição do item */
-.updateDialog{
+.updateDialog {
   width: 60em;
   height: 35em;
   background-color: var(--white);
@@ -201,7 +202,7 @@
   grid-template-areas: "input map";
 }
 
-.form{
+.form {
   grid-area: "input";
   border-radius: 4em;
   padding: 2em;
@@ -210,17 +211,17 @@
   align-items: center;
   justify-content: space-around;
 }
-.form h3{
+.form h3 {
   color: var(--aquaDark);
 }
-form{
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.5em;
 }
-.input-details{
+.input-details {
   width: 20em;
   height: 2em;
   padding: 0.3em;
@@ -238,7 +239,7 @@ form{
   align-items: center;
   margin-bottom: 0.3em;
 }
-#confirm{
+#confirm {
   width: 5em;
   height: 3em;
   margin-right: 2em;
@@ -249,16 +250,16 @@ form{
   border-radius: 1.4em;
   transition: all 0.5s;
 }
-#confirm:hover{
+#confirm:hover {
   background-color: var(--aquaGreen);
   color: var(--white);
 }
 #confirm:disabled {
-  opacity: .7;
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
-#cancel{
+#cancel {
   width: 6em;
   height: 3em;
   background-color: var(--white);
@@ -268,16 +269,16 @@ form{
   border-radius: 1.4em;
   transition: all 0.5s;
 }
-#cancel:hover{
+#cancel:hover {
   background-color: var(--fireOrange);
   color: var(--white);
 }
 #cancel:disabled {
-  opacity: .7;
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
-.mapUpdate{
+.mapUpdate {
   border-top-right-radius: 2em;
   border-bottom-right-radius: 2em;
 }

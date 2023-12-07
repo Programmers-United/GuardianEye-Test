@@ -1,108 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="./scripts/listEvent.js" defer></script>
+    <script type="module" src="./scripts/updateEvent.js" defer></script>
+    <link rel="stylesheet" href="./css/listEvent.css" />
+    <link rel="stylesheet" href="./css/settings.css" />
+    <!-- Css Geral-->
+    <link rel="shortcut icon" href="../image/fav.png" type="image/x-icon" />
+    <title>Guardian Eye</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="module" src="./scripts/mapEvent.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
-  <script type="module" src="./scripts/listEvent.js" defer></script>
-  <script type="module" src="./scripts/updateEvent.js" defer></script>
-  <link rel="stylesheet" href="./css/listEvent.css" />
-  <link rel="stylesheet" href="./css/settings.css" />
-  <!-- Css Geral-->
-  <link rel="shortcut icon" href="../image/fav.png" type="image/x-icon" />
-  <title>Guardian Eye</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <script type="module" src="./scripts/mapEvent.js"></script>
-</head>
-
-<body>
-  <div class="container">
-    <div class="navbar">
-      <div>
-        <a href="home.html" title="Guardian Eye"><img id="logo" src="../image/logo.png" alt="Logo(Guardian Eye)" /></a>
-      </div>
-      <div>
-        <ul id="navbar-eye">
-          <li><a href="home.html">Home</a></li>
-          <li><a href="newEvent.html">Adicionar Ocorrência</a></li>
-          <li><a class="action" href="listEvent.html">Listar Ocorrências</a></li>
-          <li><a href="dashboard.html">Dashboard</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="container-lista" class="container">
-      <div class="orderList">
-        <div class="details">
-          <div class="map"></div>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div>
+          <a href="home.html" title="Guardian Eye"
+            ><img id="logo" src="../image/logo.png" alt="Logo(Guardian Eye)"
+          /></a>
         </div>
-        <div id="lista"></div>
+        <div>
+          <ul id="navbar-eye">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="newEvent.html">Adicionar Ocorrência</a></li>
+            <li>
+              <a class="action" href="listEvent.html">Listar Ocorrências</a>
+            </li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="window-navigate">
-    <div class="deleteWindow">
-      <h3 id="nav-title">Tem certeza que deseja exluir o item?</h3>
-      <div class="contentOccorrence">
-        <h4 class="contentTitle">Title</h4>
-        <p class="contentDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda laudantium
-          quibusdam ipsa cum, porro placeat nobis cumque architecto.</p>
-        <span class="contentType">Type</span>
-      </div>
-      <div>
-        <button class="confirm">Confirmar</button>
-        <button class="close">Cancelar</button>
-      </div>
-    </div>
-  </div>
-  <div class="windowUpdate">
-    <div class="updateDialog">
-      <div class="form">
-        <h3>Atualizar Ocorrência</h3>
-        <form method="post" id="occurrence-form">
-          <label>
-            <input id="Title" class="input-details" type="text" placeholder="Título">
-          </label>
-          <label>
-            <input id="Description" class="input-details" type="text" placeholder="Descrição">
-          </label>
-          <div class="radio-group">
-            <label>
-              <input type="radio" name="crime-type" value="furto">
-              Furto
-            </label>
-            <label>
-              <input type="radio" name="crime-type" value="assalto">
-              Assalto
-            </label>
-            <label>
-              <input type="radio" name="crime-type" value="roubo">
-              Roubo
-            </label>
-            <label>
-              <input type="radio" name="crime-type" value="outros">
-              Outros
-            </label>
+      <div id="container-lista" class="container">
+        <div class="orderList">
+          <div class="details">
+            <div class="map"></div>
           </div>
-          <label>
-            <input id="Data" class="input-details" type="datetime-local">
-          </label>
-          <div class="buttons">
-            <input type="submit" id="confirm" />
-            <button id="cancel">Cancelar</button>
-          </div>
-        </form>
+          <div id="lista"></div>
+        </div>
       </div>
-      <div class="mapUpdate"></div>
     </div>
-  </div>
-  <!-- prettier-ignore -->
-  <script>
-    (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
-      ({ key: "", v: "weekly" });
-  </script>
-</body>
-
+    <div class="window-navigate">
+      <div class="deleteWindow">
+        <h3 id="nav-title">Tem certeza que deseja exluir o item?</h3>
+        <div class="contentOccorrence">
+          <h4 class="contentTitle">Title</h4>
+          <p class="contentDescription">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+            laudantium quibusdam ipsa cum, porro placeat nobis cumque
+            architecto.
+          </p>
+          <span class="contentType">Type</span>
+        </div>
+        <div>
+          <button class="confirm">Confirmar</button>
+          <button class="close">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    <div class="windowUpdate">
+      <div class="updateDialog">
+        <div class="form">
+          <h3>Atualizar Ocorrência</h3>
+          <form method="post" id="occurrence-form">
+            <label>
+              <input
+                id="Title"
+                class="input-details"
+                type="text"
+                placeholder="Título"
+              />
+            </label>
+            <label>
+              <input
+                id="Description"
+                class="input-details"
+                type="text"
+                placeholder="Descrição"
+              />
+            </label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="crime-type" value="furto" />
+                Furto
+              </label>
+              <label>
+                <input type="radio" name="crime-type" value="assalto" />
+                Assalto
+              </label>
+              <label>
+                <input type="radio" name="crime-type" value="roubo" />
+                Roubo
+              </label>
+              <label>
+                <input type="radio" name="crime-type" value="outros" />
+                Outros
+              </label>
+            </div>
+            <label>
+              <input id="Data" class="input-details" type="datetime-local" />
+            </label>
+            <div class="buttons">
+              <input type="submit" id="confirm" />
+              <button id="cancel">Cancelar</button>
+            </div>
+          </form>
+        </div>
+        <div class="mapUpdate"></div>
+      </div>
+    </div>
+  </body>
 </html>
