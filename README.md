@@ -10,8 +10,6 @@ O objetivo deste projeto é explorar as funcionalidades do Node.js para integra�
 
 - **Express:** Utilizamos o Express para criar as rotas de solicitação de dados para o banco.
 
-- **Aura DB:** Serivdor online do banco relacional de grafos, Neo4j, onde é armazenados os dados que compõem os nós dos relacionamentos (Id, Título, Tipo e Localização).
-
 - **MongoDB Atlas:** Servidor online do MongoDB, onde é armazenados os dados das ocorrências, (Id, Título, Descrição, Tipo e Localização). 
 
 - **Mongoose:** Essa ferramenta foi essencial para estabelecer a conexão com o banco de dados MongoDB.
@@ -34,8 +32,6 @@ Este projeto representa um estudo aprofundado das tecnologias e abordagens utili
 - [Express](https://expressjs.com/pt-br/)
 - [MongoDB](https://www.mongodb.com/)
 - [MongoDB Atlas](https://www.mongodb.com/docs/atlas/)
-- [Neo4j](https://neo4j.com/docs/)
-- [AuraDB](https://neo4j.com/docs/aura/auradb/?utm_source=google&utm_medium=PaidSearch&utm_campaign=GDB&utm_content=AMS-X-Awareness-GDB-Text&utm_term=&gad_source=1&gclid=CjwKCAiA98WrBhAYEiwA2WvhOqI1ZGxlVqS8H05k9U_8cCwUuNgDMAnggf0xu5Z04ymwYNrvFQWYFxoCN1MQAvD_BwE)
 
 ### Funcionalidades:
 
@@ -47,11 +43,7 @@ O backend do projeto oferece uma API com os seguintes métodos:
    2. _POST (/point)_: Para adicionar uma nova ocorrência.
    3. _PUT (/point)_: Para atualizar as informações das ocorrências.
    4. _DELETE (/point/id)_: Para deletar ocorrências existentes.
-#
-* _Rotas de relacionamento entre nós (Neo4j):_
 
-   1. _GET(/node/id)_: Para listar os relacionamentos de proximidade.
-   2. _GET(/node/type/id)_: Pra lista os relacionamentos de tipo.
 
 ### Configuração e Uso
 
@@ -79,9 +71,6 @@ yarn
 
 ```bash
 MONGODB_URI = yourMongoDBConnectionUri
-NEO4J_URL = yourNeo4jConnectionUri
-NEO4J_PASSWORD = yourNeo4jpassaword
-NEO4J_USER = yourUser
 API_PORT= yourPort
 ```
 
