@@ -57,6 +57,11 @@
     align-items: center;
     justify-content: center;
 }
+.divTypes{
+    text-align: justify;
+    align-items: flex-start;
+    padding: 30px;
+}
 #mapProximy, #mapTypes{
     width: 90%;
     height: 70%;

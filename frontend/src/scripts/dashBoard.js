@@ -9,7 +9,10 @@ const closeWindow = document.getElementById("closeWindow");
 //Constantes de informação da janela de informção
 const inforTitle = document.getElementById("inforTitle");
 const inforProxy = document.getElementById("inforProxy");
+const inforTit = document.getElementById("inforTit");
 const inforType = document.getElementById("inforType");
+const inforDescr = document.getElementById("inforDescr");
+const inforData = document.getElementById("inforData");
 
 window.addEventListener("load", () => {
   //Criando o item da lista
@@ -19,8 +22,10 @@ window.addEventListener("load", () => {
       arrayData.forEach(element => {
         const div = document.createElement("div");
         div.classList.add("itemList");
+        div.id= "itemList";
 
         const title = document.createElement("h4");
+        title.id= "titleList";
         title.textContent = element.title;
         div.appendChild(title);
 
@@ -44,6 +49,12 @@ window.addEventListener("load", () => {
 
         div.addEventListener("click", () => {
           windowInformation.style.display = "flex";
+
+          inforTitle.innerHTML= `${element.title} - <span> ( ${element._id} ) </span>`;
+          inforTit.innerHTML = `Título: <span>${element.title} </span>`;
+          inforType.innerHTML = `Tipo: <span>${element.type} </span>`;
+          inforDescr.innerHTML = `Descrição: <span>${element.description} </span>`;
+          inforData.innerHTML = `Date: <span>${element.date} </span>`;
           closeWindow.addEventListener("click", () => {
             windowInformation.style.display = "none";
           })
@@ -96,3 +107,10 @@ const fillSpanFields = (data) => {
   document.querySelector('.DayMonth').textContent = dataLastThirtyDays.length || 0;
 }
 
+const map = L.map('mapProximy').setView([-6.889531952896556, -38.54570201052411], 16);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+L.marker([-6.889531952896556, -38.54570201052411]).addTo(map)
+.bindPopup("Ponto")
+.openPopup();
