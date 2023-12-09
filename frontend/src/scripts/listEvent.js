@@ -20,6 +20,7 @@ window.addEventListener("load", () => {
         const divTitle = document.createElement("div");
         const titulo = document.createElement("h3");
         titulo.classList.add("titulo");
+        titulo.id = "titlEvent";
         titulo.textContent = element.title;
         divTitle.appendChild(titulo);
 
@@ -29,11 +30,13 @@ window.addEventListener("load", () => {
         //Button para excluir
         const button = document.createElement("button");
         button.classList.add("btn-remover");
+        button.id = "btn-remover"
         button.textContent = "Excluir";
 
         //Button para editar
         const updateButton = document.createElement("button");
         updateButton.classList.add("btn-update");
+        updateButton.id = "btn-update";
         updateButton.textContent = "Atualizar";
         divButton.appendChild(updateButton);
         divButton.appendChild(button);

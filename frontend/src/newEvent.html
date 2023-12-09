@@ -41,15 +41,15 @@
           <li>
             <a class="action" href="newEvent.html">Adicionar Ocorrência</a>
           </li>
-          <li><a href="listEvent.html">Listar Ocorrências</a></li>
+          <li><a id="linkListOccorrences" href="listEvent.html">Listar Ocorrências</a></li>
           <li><a href="dashboard.html">Dashboard</a></li>
         </ul>
       </div>
       <div class="content">
         <div class="notification">
-          <div class="navigator">
+          <div id="navigator" class="navigator">
             <div>
-              <h3 class="nav-title">Ocorrência Inserida</h3>
+              <h3 id="notificationTitle" class="nav-title">Ocorrência Inserida</h3>
               <h4 class="nav-name">Nome: Ocorrência</h4>
               <h5 class="nav-message">Ocorrência adicionada com sucesso!</h5>
             </div>
@@ -76,7 +76,7 @@
                   placeholder="Descrição"
                 />
               </label>
-              <div class="radio-group">
+              <div id="Radios" class="radio-group">
                 <label>
                   <input type="radio" name="crime-type" value="furto" />
                   Furto
@@ -100,7 +100,7 @@
               <input type="submit" id="confirm" />
             </form>
           </div>
-          <div class="map"></div>
+          <div id="mapaEvent" class="map"></div>
         </div>
       </div>
     </div>
