@@ -18,6 +18,8 @@ O objetivo deste projeto é explorar as funcionalidades do Node.js para integra�
 
 - **Fetch:** Para a comunicação entre o back-end e o front-end, empregamos o recurso nativo do JavaScript, o fetch.
 
+- **Cypress:** Para realizar os testes de sistema e validar asa ações do backend. 
+
 - **CORS (Cross-Origin Resource Sharing):** Utilizamos o CORS para prevenir problemas de modularização no código do back-end, assegurando a correta interação entre diferentes domínios.
 
 Este projeto representa um estudo aprofundado das tecnologias e abordagens utilizadas na integração de bancos de dados NoSQL com aplicações Node.js, demonstrando a capacidade de armazenar e recuperar dados geográficos, além de gerar um sistema de localização de forma eficiente.
@@ -91,6 +93,7 @@ O servidor estará disponível em http://localhost:API_PORT
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Leaflet](https://leafletjs.com/)
 - [Mongo Charts](https://www.mongodb.com/docs/charts/)
+- [Cypress](https://docs.cypress.io/api/commands/document)
 
 ### Páginas
 
